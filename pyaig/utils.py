@@ -89,26 +89,26 @@ class po_info(object):
 
 def save_po_info( aiger_in, aiger_out ):
 
-    with open(aiger_in, 'r') as fin:
+    with open(aiger_in, 'rb') as fin:
         aig = read_aiger( fin )
         
     saved = po_info(aig)
     
     po_info.remove(aig)
     
-    with open(aiger_out, 'w') as fout:
+    with open(aiger_out, 'wb') as fout:
         write_aiger( aig, fout )    
     
     return saved
 
 def restore_po_info( saved, aiger_in, aiger_out ):
     
-    with open(aiger_in, 'r') as fin:
+    with open(aiger_in, 'rb') as fin:
         aig = read_aiger( fin )
 
     saved.restore(aig)
 
-    with open(aiger_out, 'w') as fout:
+    with open(aiger_out, 'wb') as fout:
         write_aiger( aig, fout )
         
 def delay(aig, f, n=1, init=AIG.INIT_ZERO, name=None):

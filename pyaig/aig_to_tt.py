@@ -68,12 +68,12 @@ def aig_to_tt(aig):
         M[f] = M[n.get_left()] & M[n.get_right()]
 
     assert (aig.n_pos()%2) == 0
-    return m, [ (M[aig.get_po_fanin(i*2)], M[aig.get_po_fanin(i*2+1)]) for i in xrange(aig.n_pos()/2) ]
+    return m, [ (M[aig.get_po_fanin(i*2)], M[aig.get_po_fanin(i*2+1)]) for i in xrange(aig.n_pos()//2) ]
 
 
 def aig_to_tt_fname(fname):
 
-    with open(fname, 'r') as f:
+    with open(fname, 'rb') as f:
         aig = read_aiger(f)
 
     return aig_to_tt(aig)
